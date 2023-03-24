@@ -11,24 +11,25 @@ function crearClasePersona() {
       // Inicializar las propiedades de la persona con los valores recibidos como argumento
 
       // Tu código aca:
-
+      this.nombre = nombre;
+      this.edad = edad;
+      this.hobbies = hobbies;
+      this.amigos = amigos;
     }
 
     addFriend(nombre, edad) {
       // El método 'addFriend' recibe un string 'nombre' y un entero 'edad' y debe agregar un objeto:
       // { nombre: nombre, edad: edad} al arreglo de amigos de la persona.
       // No debe retornar nada.
-
       // Tu código aca:
-
+      this.amigos.push({ nombre: nombre, edad: edad });
     }
 
     addHobby(hobby) {
       // El método 'addHobby' recibe un string 'hobby' y debe agregarlo al arreglo de hobbies de la persona.
       // No debe retornar nada.
-
       // Tu código aca:
-
+      this.hobbies.push(hobby);
     }
     getFriends() {
       // El método 'getFriends' debe retornar un arreglo con sólo los nombres del arreglo de amigos
@@ -36,18 +37,23 @@ function crearClasePersona() {
       // Ej:
       // Suponiendo que la persona tiene estos amigos: [{nombre: 'martin', edad: 31},{nombre: 'toni', edad: 33}]
       // persona.getFriends() debería devolver ['martin', 'toni']
-
       // Tu código aca:
-
+      var arrayAmigosName = [];
+      var obj = this.amigos;
+      for (const key in obj) {
+        if (Object.hasOwnProperty.call(obj, key)) {
+          arrayAmigosName.push(obj[key].nombre);
+        }
+      }
+      return arrayAmigosName;
     }
 
     getHobbies() {
       // El método 'getHobbies' debe retornar un arreglo con los hobbies de la persona
       // Ej:
       // persona.getHobbies() debe devolver ['correr', 'dormir', 'nadar']
-
       // Tu código aca:
-
+      return this.hobbies;
     }
 
     getPromedioEdad() {
@@ -64,15 +70,22 @@ function crearClasePersona() {
       //   }]
       // }
       // persona.getPromedioEdad() debería devolver 29 ya que (33 + 25) / 2 = 29
-
       // Tu código aca:
-
+      var object = this.amigos;
+      var element = 0;
+      for (const key in object) {
+        if (Object.hasOwnProperty.call(object, key)) {
+          element += object[key].edad;
+          
+        }
+      }
+      return element/this.amigos.length;
     }
-  };
+  }
 
   return Persona;
 }
 
 // No modifiques nada debajo de esta linea //
 
-module.exports = crearClasePersona
+module.exports = crearClasePersona;
